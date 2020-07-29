@@ -1,0 +1,14 @@
+.login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  top: 230px;
+}
+.login__img {
+  padding: 0px 30px;
+}
+
+.login__box {
+  padding: 0px 30px;
+}

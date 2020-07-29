@@ -1,0 +1,25 @@
+.footer {
+  position: absolute;
+  width: 50vw;
+  bottom: 40px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: auto;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  font-size: 12px;
+}
+
+.footer__link {
+  text-decoration: none;
+
+  color: #00376b;
+}
+
+.footer__title {
+  font-size: 15px;
+  padding-left: 50px;
+  color: #8e8e8e;
+}
