@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Button, TextField } from "@material-ui/core";
 import useStyles from "../FormBoxStyles.jsx";
 
-function SignupBox() {
+function SignupBox({ signupHandler }) {
   const classes = useStyles();
   const [id, setId] = useState("");
   const [name, setName] = useState("");
@@ -23,18 +23,13 @@ function SignupBox() {
   const onChangePasswordHandler = (event) => {
     setPassword(event.currentTarget.value);
   };
-  const onSubmitHandler = (event) => {
-    event.preventDefault();
-    console.log(id, name, nickname, password);
-    /*Request Signup*/
-  };
 
   return (
     <>
       <div className={classes.container}>
         <h1 className={classes.header}>Instagram</h1>
         <p>친구들의 사진과 동영상을 보려면 가입하세요.</p>
-        <form className={classes.form} onSubmit={onSubmitHandler}>
+        <form className={classes.form} onSubmit={signupHandler}>
           <TextField
             size="small"
             variant="outlined"

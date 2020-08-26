@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Button, TextField } from "@material-ui/core";
 import useStyles from "../FormBoxStyles.jsx";
 
-function Login() {
+function Login({ loginHandler, error }) {
   const classes = useStyles();
   const [id, setId] = useState("");
   const [password, setPassword] = useState("");
@@ -15,9 +15,14 @@ function Login() {
   };
   const onSubmitHandler = (event) => {
     event.preventDefault();
-    console.log(id, password);
-    /* Request Login */
+    loginHandler(id, password);
   };
+  useEffect(() => {
+    if (error) {
+      setId("");
+      setPassword("");
+    }
+  }, [error]);
 
   return (
     <>

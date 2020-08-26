@@ -3,10 +3,12 @@
   justify-content: center;
   align-items: center;
   position: relative;
-  top: 230px;
+  top: 18%;
 }
 .login__img {
   padding: 0px 30px;
+  width: 300px;
+  height: 450px;
 }
 
 .login__box {
