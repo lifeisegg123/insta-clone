@@ -6,8 +6,9 @@ export const types = {
   REQUEST_LOGOUT: "user/REQUEST_LOGOUT",
   REQUEST_SIGNUP: "user/REQUEST_SIGNUP",
   SET_ISLOGIN: "user/SET_ISLOGIN",
-  SET_USER: "user/SET_USER",
+  SET_USERINFO: "user/SET_USERINFO",
   SET_ERROR: "user/SET_ERROR",
+  SET_NICKNAME: "user/SET_NICKNAME",
 };
 export const actions = {
   requestLogin: (id, password) => ({ type: types.REQUEST_LOGIN, id, password }),
@@ -20,8 +21,9 @@ export const actions = {
     password,
   }),
   setIsLogin: (isLogin) => ({ type: types.SET_ISLOGIN, isLogin }),
-  setUser: (user) => ({ type: types.SET_USER, user }),
+  setUserInfo: (userInfo) => ({ type: types.SET_USERINFO, userInfo }),
   setError: (error) => ({ type: types.SET_ERROR, error }),
+  setNickname: (nickname) => ({ type: types.SET_NICKNAME, nickname }),
 };
 
 export function* loginFlow() {
@@ -29,11 +31,15 @@ export function* loginFlow() {
     const { id, password } = yield take(types.REQUEST_LOGIN);
     try {
       var user = yield call(login, id, password);
-      yield put(actions.setUser(user));
+      yield put(actions.setUserInfo(user));
       yield put(actions.setError(false));
       yield put(actions.setIsLogin(true));
+      yield take(types.REQUEST_LOGOUT);
+      yield put(actions.setIsLogin(false));
+      yield PushManager(actions.setUser({}));
     } catch (error) {
       yield put(actions.setError(true));
+      yield put(actions.setError(false));
     }
   }
 }

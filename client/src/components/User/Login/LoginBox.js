@@ -19,6 +19,7 @@ function Login({ loginHandler, error }) {
   };
   useEffect(() => {
     if (error) {
+      alert("error");
       setId("");
       setPassword("");
     }

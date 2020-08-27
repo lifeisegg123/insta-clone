@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import LoginBox from "./LoginBox";
 import SignupLink from "./SignupLink";
 import { actions } from "../../../action/user";
