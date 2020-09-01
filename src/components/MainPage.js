@@ -14,8 +14,6 @@ const useStyles = makeStyles({
     marginTop: "10vh",
     alignItems: "center",
     justifyContent: "space-around",
-    backgroundColor: "#ffffff",
-    width: "40vw",
   },
 });
 
@@ -28,7 +26,7 @@ function MainPage() {
   useEffect(() => {
     if (isLogin) {
       dispatch(actions.requsetTimeline(userInfo.userKey, userInfo.friends));
-      console.log("hi");
+      console.log(timelines);
     }
   }, [isLogin]);
 
@@ -38,12 +36,14 @@ function MainPage() {
       <ul className={classes.container}>
         {timelines.map((timeline) => (
           <Timeline
-            key={timeline.timelineKey}
+            key={`${timeline.userKey} ${timeline.timelineKey}`}
             timelineKey={timeline.timelineKey}
             profileImage={userInfo.profileImage}
-            nickname={userInfo.nickname}
-            imgs=""
-            comments={timeline.desc}
+            nickname={timeline.nickname}
+            desc={timeline.desc}
+            imgs={timeline.imgs}
+            comments={timeline.comments}
+            likes={timeline.likes}
           />
         ))}
       </ul>

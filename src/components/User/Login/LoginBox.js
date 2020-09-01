@@ -7,13 +7,13 @@ function Login({ loginHandler, error }) {
   const classes = useStyles();
   const [id, setId] = useState("");
   const [password, setPassword] = useState("");
-  const onChangeIdHandler = (event) => {
+  const handleId = (event) => {
     setId(event.currentTarget.value);
   };
-  const onChangePasswordHandler = (event) => {
+  const handlePassword = (event) => {
     setPassword(event.currentTarget.value);
   };
-  const onSubmitHandler = (event) => {
+  const handleFormSubmit = (event) => {
     event.preventDefault();
     loginHandler(id, password);
   };
@@ -29,7 +29,7 @@ function Login({ loginHandler, error }) {
     <>
       <div className={classes.container}>
         <h1 className={classes.header}>Instagram</h1>
-        <form className={classes.form} onSubmit={onSubmitHandler}>
+        <form className={classes.form} onSubmit={handleFormSubmit}>
           <TextField
             size="small"
             variant="outlined"
@@ -37,7 +37,7 @@ function Login({ loginHandler, error }) {
             className={classes.textInput}
             required={true}
             value={id}
-            onChange={onChangeIdHandler}
+            onChange={handleId}
           ></TextField>
           <TextField
             size="small"
@@ -47,7 +47,7 @@ function Login({ loginHandler, error }) {
             type="password"
             required={true}
             value={password}
-            onChange={onChangePasswordHandler}
+            onChange={handlePassword}
           ></TextField>
           {id && password ? (
             <Button

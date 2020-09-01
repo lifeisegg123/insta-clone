@@ -28,7 +28,6 @@ export const actions = {
 export function* setTimeline() {
   while (true) {
     const { userKey, targetUserFriends } = yield take(types.REQUEST_TIMELINE);
-    console.log("settimeline");
     const timelines = yield call(getTimeLines, userKey, targetUserFriends);
     yield put(actions.setTimeline(timelines));
     console.log(timelines);
