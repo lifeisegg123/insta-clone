@@ -7,7 +7,7 @@ export const timelines = [
 export const users = [
   {
     userKey: 101,
-    id: "test@naver.com",
+    id: "test",
     password: "1234",
     nickname: "김첨지",
     profileImage: "",

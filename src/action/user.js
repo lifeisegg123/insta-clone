@@ -1,5 +1,6 @@
 import { all, call, put, take, fork } from "redux-saga/effects";
 import login from "../components/User/Login/loginApi";
+import { actions as timelineActions } from "./timeline";
 
 export const types = {
   REQUEST_LOGIN: "user/REQUEST_LOGIN",
@@ -36,7 +37,8 @@ export function* loginFlow() {
       yield put(actions.setIsLogin(true));
       yield take(types.REQUEST_LOGOUT);
       yield put(actions.setIsLogin(false));
-      yield PushManager(actions.setUser({}));
+      yield put(actions.setUser({}));
+      yield put(timelineActions.setTimeline([]));
     } catch (error) {
       yield put(actions.setError(true));
       yield put(actions.setError(false));

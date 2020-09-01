@@ -9,6 +9,7 @@ import HomeIcon from "@material-ui/icons/Home";
 import IconButton from "@material-ui/core/IconButton";
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
+import { Link } from "react-router-dom";
 
 import { useDispatch } from "react-redux";
 import { actions } from "../../action/user";
@@ -30,6 +31,15 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     justifyContent: "space-around",
     alignItems: "center",
+  },
+  menu: {
+    marginTop: "34px",
+    marginLeft: "35px",
+  },
+  title: {
+    textDecoration: "none",
+    color: "black",
+    fontSize: "25px",
   },
 }));
 
@@ -54,9 +64,9 @@ export default function Navbar({ user }) {
     <div className={classes.root}>
       <AppBar position="fixed" color="default" className={classes.appBar}>
         <Toolbar className={classes.toolBar}>
-          <Typography variant="h6" className={classes.title}>
+          <Link to="/" className={classes.title}>
             Instaclone
-          </Typography>
+          </Link>
           <span>
             <IconButton color="inherit">
               <HomeIcon />
@@ -84,6 +94,7 @@ export default function Navbar({ user }) {
               }}
               open={open}
               onClose={handleClose}
+              className={classes.menu}
             >
               <MenuItem onClick={handleClose}>Profile</MenuItem>
               <MenuItem onClick={handleLogout}>logout</MenuItem>

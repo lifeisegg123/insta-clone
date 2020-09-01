@@ -13,10 +13,10 @@ function Router() {
   return (
     <>
       <BrowserRouter>
-        <Route exact path="/" component={MainPage}></Route>
         <Route path="/user" component={Footer}></Route>
         <Route path="/user/login" component={LoginMain}></Route>
         <Route path="/user/signup" component={SignupMain}></Route>
+        <Route exact path="/" component={MainPage}></Route>
         {isLogin ? <Redirect to="/" /> : <Redirect to="/user/login" />}
       </BrowserRouter>
     </>
