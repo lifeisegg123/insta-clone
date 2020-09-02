@@ -14,6 +14,7 @@ const useStyles = makeStyles({
     marginTop: "10vh",
     alignItems: "center",
     justifyContent: "space-around",
+    padding: "0",
   },
 });
 
@@ -30,6 +31,21 @@ function MainPage() {
     }
   }, [isLogin]);
 
+  function addComment(timelineKey, comment) {
+    dispatch(
+      actions.addComment(timelineKey, {
+        userKey: `${userInfo.userKey}`,
+        nickname: userInfo.nickname,
+        desc: comment,
+      })
+    );
+  }
+  function handleLikes(timelineKey, liked) {
+    liked
+      ? dispatch(actions.addLikes(timelineKey))
+      : dispatch(actions.minusLikes(timelineKey));
+  }
+
   return (
     <div>
       <NavBar></NavBar>
@@ -44,6 +60,8 @@ function MainPage() {
             imgs={timeline.imgs}
             comments={timeline.comments}
             likes={timeline.likes}
+            addComment={addComment}
+            handleLikes={handleLikes}
           />
         ))}
       </ul>

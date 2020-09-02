@@ -39,7 +39,7 @@ export const timelines = [
     timelineKey: 10003,
     nickname: "이몽룡",
     desc: "노트북 샀다",
-    likes: 30,
+    likes: 1000,
     comments,
     imgs: [boughtNewlaptopImg],
   },

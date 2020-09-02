@@ -6,6 +6,9 @@ export const types = {
   SET_TIMELINE: "timeline/SET_TIMELINE",
   ADD_TIMELINE: "timeline/ADD_TIMELINE",
   REMOVE_TIMELINE: "timeline/REMOVE_TIMELINE",
+  ADD_COMMENT: "timeline/ADD_COMMENT",
+  ADD_LIKES: "timeline/ADD_LIKES",
+  MINUS_LIKES: "timeline/MINUS_LIKES",
 };
 
 export const actions = {
@@ -24,6 +27,13 @@ export const actions = {
     type: types.REMOVE_TIMELINE,
     timelineKey,
   }),
+  addComment: (timelineKey, comment) => ({
+    type: types.ADD_COMMENT,
+    timelineKey,
+    comment,
+  }),
+  addLikes: (timelineKey) => ({ type: types.ADD_LIKES, timelineKey }),
+  minusLikes: (timelineKey) => ({ type: types.MINUS_LIKES, timelineKey }),
 };
 export function* setTimeline() {
   while (true) {
