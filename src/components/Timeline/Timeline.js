@@ -1,9 +1,9 @@
 import React, { useState } from "react";
+import { makeStyles } from "@material-ui/core/styles";
 
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import Avatar from "@material-ui/core/Avatar";
-import { makeStyles } from "@material-ui/core/styles";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import IconButton from "@material-ui/core/IconButton";
@@ -126,7 +126,11 @@ function Timeline({
         <p className={classes.desc}>{desc}</p>
         <ul className={classes.comments}>
           {comments.map(({ nickname, desc }) => (
-            <Comment nickname={nickname} desc={desc} />
+            <Comment
+              nickname={nickname}
+              desc={desc}
+              key={`${nickname} ${desc}`}
+            />
           ))}
         </ul>
       </div>

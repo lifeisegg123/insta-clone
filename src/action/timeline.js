@@ -40,7 +40,6 @@ export function* setTimeline() {
     const { userKey, targetUserFriends } = yield take(types.REQUEST_TIMELINE);
     const timelines = yield call(getTimeLines, userKey, targetUserFriends);
     yield put(actions.setTimeline(timelines));
-    console.log(timelines);
   }
 }
 export default function* watcher() {

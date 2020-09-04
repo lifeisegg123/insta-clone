@@ -1,18 +1,16 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
+import { actions } from "../../action/user";
+
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
-import Button from "@material-ui/core/Button";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import HomeIcon from "@material-ui/icons/Home";
 import IconButton from "@material-ui/core/IconButton";
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
-import { Link } from "react-router-dom";
-
-import { useDispatch } from "react-redux";
-import { actions } from "../../action/user";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -42,9 +40,13 @@ const useStyles = makeStyles((theme) => ({
     color: "black",
     fontSize: "25px",
   },
+  link: {
+    textDecoration: "none",
+    color: "black",
+  },
 }));
 
-export default function Navbar({ user }) {
+export default function Navbar({ userInfo }) {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
@@ -97,7 +99,14 @@ export default function Navbar({ user }) {
               onClose={handleClose}
               className={classes.menu}
             >
-              <MenuItem onClick={handleClose}>Profile</MenuItem>
+              <MenuItem onClick={handleClose}>
+                <Link
+                  className={classes.link}
+                  to={`/profile/${userInfo.userKey}`}
+                >
+                  Profile
+                </Link>
+              </MenuItem>
               <MenuItem onClick={handleLogout}>logout</MenuItem>
             </Menu>
           </span>

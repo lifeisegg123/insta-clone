@@ -27,7 +27,6 @@ function MainPage() {
   useEffect(() => {
     if (isLogin) {
       dispatch(actions.requsetTimeline(userInfo.userKey, userInfo.friends));
-      console.log(timelines);
     }
   }, [isLogin]);
 
@@ -48,7 +47,7 @@ function MainPage() {
 
   return (
     <div>
-      <NavBar></NavBar>
+      <NavBar userInfo={userInfo}></NavBar>
       <ul className={classes.container}>
         {timelines.map((timeline) => (
           <Timeline

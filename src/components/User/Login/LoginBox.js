@@ -28,7 +28,7 @@ function Login({ loginHandler, error }) {
   return (
     <>
       <div className={classes.container}>
-        <h1 className={classes.header}>Instagram</h1>
+        <h1 className={classes.header}>Instaclone</h1>
         <form className={classes.form} onSubmit={handleFormSubmit}>
           <TextField
             size="small"
