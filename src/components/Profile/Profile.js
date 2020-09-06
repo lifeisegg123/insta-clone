@@ -1,10 +1,12 @@
-import React, { useEffect } from "react";
+import React, { useState } from "react";
 import NavBar from "../NavBar/NavBar";
 import { useSelector, useDispatch } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 import { Avatar } from "@material-ui/core";
 
-const useStyles = makeStyles((theme) => ({
+import ImageWrapper from "./ImageWrapper";
+
+const useStyles = makeStyles({
   root: {
     width: "935px",
     margin: "10vh auto 0 auto",
@@ -42,20 +44,9 @@ const useStyles = makeStyles((theme) => ({
     margin: "30px auto",
     display: "grid",
     gridTemplateColumns: "repeat(3, 1fr)",
-    placeItems: "center space-between",
+    placeItems: "center center",
   },
-  timelinesImg: {
-    width: "293px",
-    height: "293px",
-    "&:hover": {
-      filter: "blur(3px)",
-    },
-    "@media (max-width:990px)": {
-      width: "29.8vw",
-      height: "29.8vw",
-    },
-  },
-}));
+});
 
 function Profile() {
   const classes = useStyles();
@@ -95,12 +86,7 @@ function Profile() {
         </div>
         <div className={classes.timelinesImgDiv}>
           {timelines.map((timeline) => (
-            <img
-              key={`${timeline.timelineKey}`}
-              src={timeline.imgs[0]}
-              alt={timeline.desc}
-              className={classes.timelinesImg}
-            ></img>
+            <ImageWrapper key={timeline.timelineKey} timeline={timeline} />
           ))}
         </div>
       </div>
