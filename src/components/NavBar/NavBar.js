@@ -44,6 +44,12 @@ const useStyles = makeStyles((theme) => ({
     textDecoration: "none",
     color: "black",
   },
+  homeIcon: {
+    color: "black",
+    textDecoration: "none",
+    height: "48px",
+    width: "48px",
+  },
 }));
 
 export default function Navbar({ userInfo }) {
@@ -71,9 +77,11 @@ export default function Navbar({ userInfo }) {
             Instaclone
           </Link>
           <span>
-            <IconButton color="inherit">
-              <HomeIcon />
-            </IconButton>
+            <Link to="/" className={classes.homeIcon}>
+              <IconButton color="inherit">
+                <HomeIcon></HomeIcon>
+              </IconButton>
+            </Link>
             <IconButton
               aria-label="account of current user"
               aria-controls="menu-appbar"
