@@ -1,62 +1,87 @@
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 
+import ChatBubbleIcon from "@material-ui/icons/ChatBubble";
+import FavoriteIcon from "@material-ui/icons/Favorite";
+
 const useStyles = makeStyles({
   root: {
     position: "relative",
     width: "293px",
     height: "293px",
-  },
-  img: {
-    position: "relative",
-    width: "293px",
-    height: "293px",
-    "&:hover": {
-      filter: "blur(3px)",
-    },
     "@media (max-width:990px)": {
       width: "29.8vw",
       height: "29.8vw",
     },
   },
-  textDiv: {
-    color: "rgba( 0, 0, 0, 0.5 )",
+  img: {
+    position: "relative",
+    width: "293px",
+    height: "293px",
+    "@media (max-width:990px)": {
+      width: "29.8vw",
+      height: "29.8vw",
+    },
+  },
+  hoverBackground: {
+    margin: "0",
+    padding: "0",
+    backgroundColor: "rgba( 0, 0, 0, 0.3 )",
     width: "100%",
     height: "100%",
     top: "50%",
     left: "50%",
-    transform: "translate(-50%, -50%)",
+    transform: "translate(0%, -102%)",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    color: "white",
+    listStyle: "none",
   },
-  text: {
-    position: "absolute",
-    padding: "",
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
-    textAlign: "center",
+  textContainer: {
+    width: "60%",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-evenly",
+  },
+  listItem: {
+    width: "20%",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
   },
 });
 function ImageWrapper({ timeline }) {
   const classes = useStyles();
   const [isHover, setIsHover] = useState(false);
-  const handleMouseOver = (event) => {
-    console.log(timeline);
-    setIsHover(true);
-  };
+  const handleMouseOver = () => setIsHover(true);
   const handleMouseLeave = () => setIsHover(false);
   return (
-    <div className={classes.root}>
+    <div
+      className={classes.root}
+      onMouseOver={handleMouseOver}
+      onMouseLeave={handleMouseLeave}
+    >
       <img
-        onMouseOver={handleMouseOver}
-        onMouseLeave={handleMouseLeave}
         key={`${timeline.timelineKey}`}
         src={timeline.imgs[0]}
         alt={timeline.timelineKey}
         className={classes.img}
       />
-      <div className={classes.textDiv}>
-        <p className={classes.text}>{timeline.likes}</p>
-      </div>
+      {isHover && (
+        <ul className={classes.hoverBackground}>
+          <div className={classes.textContainer}>
+            <li className={classes.listItem}>
+              <FavoriteIcon />
+              <p>{timeline.likes}</p>
+            </li>
+            <li className={classes.listItem}>
+              <ChatBubbleIcon />
+              <p>{timeline.comments.length}</p>
+            </li>
+          </div>
+        </ul>
+      )}
     </div>
   );
 }
